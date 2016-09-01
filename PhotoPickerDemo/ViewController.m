@@ -8,11 +8,21 @@
 
 #import "ViewController.h"
 
+@import Photos;
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+
+
+
+- (void)awakeFromNib
+{
+//    PHFetchOptions * allPhotoOptions = [[PHFetchOptions alloc] init];
+//    allPhotoOptions.sortDescriptors
+}
 
 
 
@@ -22,9 +32,15 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+
+
+
+- (IBAction)cancelButtonAction:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)doneButtonAction:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
