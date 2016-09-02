@@ -7,21 +7,68 @@
 //
 
 #import "ViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @import Photos;
 
 @interface ViewController ()
 
+@property (nonatomic, strong) ALAssetsLibrary * assetsLibrary;
+
+@property (nonatomic, strong) NSMutableArray * albumsArray;
+
 @end
 
 @implementation ViewController
 
+- (NSMutableArray *)albumsArray
+{
+    if (_albumsArray == nil)
+    {
+        _albumsArray = [NSMutableArray array];
+    }
+    return _albumsArray;
+}
 
 
 - (void)awakeFromNib
 {
 //    PHFetchOptions * allPhotoOptions = [[PHFetchOptions alloc] init];
 //    allPhotoOptions.sortDescriptors
+    
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+    {
+        return;
+    }
+    ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
+    if (authStatus != ALAuthorizationStatusAuthorized)
+    {
+        return;
+    }
+    
+    self.assetsLibrary = [[ALAssetsLibrary alloc] init];
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (group)
+        {
+            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+            if (group.numberOfAssets > 0)
+            {
+                [self.albumsArray addObject:group];
+            }
+        }
+        else
+        {
+            if (self.albumsArray.count > 0)
+            {
+                
+            }
+        }
+    } failureBlock:^(NSError *error) {
+        
+        
+        
+    }];
+    
 }
 
 
