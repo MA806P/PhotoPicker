@@ -21,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-1732" y="174"/>
         </scene>
-        <!--View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="5Ib-Mq-OgH">
             <objects>
-                <viewController id="nfl-r1-g2w" sceneMemberID="viewController">
+                <viewController id="nfl-r1-g2w" customClass="RootViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rQI-dI-wev"/>
                         <viewControllerLayoutGuide type="bottom" id="3hy-Gs-Qil"/>
@@ -39,6 +39,17 @@
                                     <segue destination="3oy-R0-mhT" kind="presentation" id="ZRQ-12-fmA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qD-t9-Nfg">
+                                <rect key="frame" x="20" y="72" width="65" height="30"/>
+                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Picker"/>
+                                <connections>
+                                    <action selector="pickerBtnAction:" destination="nfl-r1-g2w" eventType="touchUpInside" id="khV-Mm-je4"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sBy-F7-CFz">
+                                <rect key="frame" x="20" y="110" width="80" height="80"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -47,6 +58,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rRb-tF-Fbd"/>
+                    <connections>
+                        <outlet property="userImgView" destination="sBy-F7-CFz" id="vmR-nE-69L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWz-cI-pjB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,7 +80,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aa-GC-9b1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1280" y="890"/>
+            <point key="canvasLocation" x="-1782" y="970"/>
         </scene>
         <!--Photo-->
         <scene sceneID="d2H-yX-bSh">
@@ -75,7 +89,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="PLT-kz-5hM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Wt-Dg-H3K">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -113,7 +127,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHk-yp-AhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-818" y="874"/>
+            <point key="canvasLocation" x="-1044" y="970"/>
         </scene>
     </scenes>
 </document>

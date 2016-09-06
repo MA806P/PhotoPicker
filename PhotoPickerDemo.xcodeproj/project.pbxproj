@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1898A6A31D7D26B000195C38 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898A6A21D7D26B000195C38 /* RootViewController.m */; };
 		18F5CAD61D76DE0C006EF074 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5CAD51D76DE0C006EF074 /* main.m */; };
 		18F5CAD91D76DE0C006EF074 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5CAD81D76DE0C006EF074 /* AppDelegate.m */; };
 		18F5CADC1D76DE0C006EF074 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5CADB1D76DE0C006EF074 /* ViewController.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1898A6A11D7D26B000195C38 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		1898A6A21D7D26B000195C38 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		18F5CAD11D76DE0C006EF074 /* PhotoPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F5CAD51D76DE0C006EF074 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18F5CAD71D76DE0C006EF074 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 				18F5CAD81D76DE0C006EF074 /* AppDelegate.m */,
 				18F5CADA1D76DE0C006EF074 /* ViewController.h */,
 				18F5CADB1D76DE0C006EF074 /* ViewController.m */,
+				1898A6A11D7D26B000195C38 /* RootViewController.h */,
+				1898A6A21D7D26B000195C38 /* RootViewController.m */,
 				18F5CADD1D76DE0C006EF074 /* Main.storyboard */,
 				18F5CAE01D76DE0C006EF074 /* Assets.xcassets */,
 				18F5CAE21D76DE0C006EF074 /* LaunchScreen.storyboard */,
@@ -151,6 +156,7 @@
 			files = (
 				18F5CADC1D76DE0C006EF074 /* ViewController.m in Sources */,
 				18F5CAD91D76DE0C006EF074 /* AppDelegate.m in Sources */,
+				1898A6A31D7D26B000195C38 /* RootViewController.m in Sources */,
 				18F5CAD61D76DE0C006EF074 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
