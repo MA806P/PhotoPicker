@@ -11,6 +11,13 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 
+
+#define SHOWMESSAGE__(title,messages) \
+UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messages \
+delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil]; \
+[alert show]; \
+
+
 @interface RootViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *userImgView;
 
@@ -25,21 +32,28 @@
 {
     
     
-    UIAlertController * selectImgAlert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    //应用名称, 提示信息里会用到
+    NSDictionary * mainInfoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString * appName = [mainInfoDictionary objectForKey:@"CFBundleName"];
+    
+    
+    UIAlertController * selectImgAlert = [UIAlertController alertControllerWithTitle:@"修改头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [selectImgAlert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         //相机功能
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
-            NSLog(@"该设备不支持相机功能");
+            SHOWMESSAGE__(@"提示", @"该设备不支持相机功能");
             return;
         }
         
         //是否授权使用相机
         AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        if (authStatus != AVAuthorizationStatusAuthorized)
+        if (authStatus == AVAuthorizationStatusDenied)
         {
-            NSLog(@"没有权限访问相机");
+            NSString * title = [NSString stringWithFormat:@"%@没有权限访问相机", appName];
+            NSString * message = [NSString stringWithFormat:@"请进入系统 设置>隐私>相机 允许\"%@\"访问您的相机",appName];
+            SHOWMESSAGE__(title, message);
             return;
         }
         
@@ -58,20 +72,23 @@
         //是否支持相册功能
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
         {
-            NSLog(@"该设备不支持相册功能");
+            SHOWMESSAGE__(@"提示", @"该设备不支持相册功能");
             return;
         }
         
         //是否授权访问照片
         ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
-        if (authStatus != ALAuthorizationStatusAuthorized)
+        if (authStatus == ALAuthorizationStatusDenied)
         {
-            NSLog(@"没有权限访问照片");
+            NSString * title = [NSString stringWithFormat:@"%@没有权限访问照片", appName];
+            NSString * message = [NSString stringWithFormat:@"请进入系统 设置>隐私>照片 允许\"%@\"访问您的照片",appName];
+            SHOWMESSAGE__(title, message);
             return;
         }
         
+        
         UIImagePickerController *pickerImage = [[UIImagePickerController alloc] init];
-        pickerImage.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        pickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         pickerImage.delegate = self;
         pickerImage.allowsEditing = YES;
         [self presentViewController:pickerImage animated:YES completion:nil];
@@ -95,7 +112,22 @@
         self.userImgView.image = image;
     }];
     
+    
+    //    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    //    NSString * imageName1 = [[paths firstObject] stringByAppendingString:@"/userHeadImage.jpg"];
+    //    [headImageData writeToFile:imageName1 atomically:YES];
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        NSFileManager * fileManager = [NSFileManager defaultManager];
+    //        unsigned long long fileSize1 = [[fileManager attributesOfItemAtPath:imageName1 error:nil] fileSize] ;
+    //        NSString * cacheSizeStr1 = [NSString stringWithFormat:@"%.2fk",fileSize1/(1024.0)];
+    //        NSLog(@" 1 - %@  ", cacheSizeStr1);
+    //    });
+    
+    
 }
+
+
+
 
 
 //- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
