@@ -12,7 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-#define SHOWMESSAGE__(title,messages) \
+#define SHOWMESSAGE(title,messages) \
 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messages \
 delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil]; \
 [alert show]; \
@@ -37,13 +37,13 @@ delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil]; \
     NSString * appName = [mainInfoDictionary objectForKey:@"CFBundleName"];
     
     
-    UIAlertController * selectImgAlert = [UIAlertController alertControllerWithTitle:@"修改头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController * selectImgAlert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [selectImgAlert addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         //相机功能
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
-            SHOWMESSAGE__(@"提示", @"该设备不支持相机功能");
+            SHOWMESSAGE(@"提示", @"该设备不支持相机功能");
             return;
         }
         
@@ -53,7 +53,7 @@ delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil]; \
         {
             NSString * title = [NSString stringWithFormat:@"%@没有权限访问相机", appName];
             NSString * message = [NSString stringWithFormat:@"请进入系统 设置>隐私>相机 允许\"%@\"访问您的相机",appName];
-            SHOWMESSAGE__(title, message);
+            SHOWMESSAGE(title, message);
             return;
         }
         
@@ -72,7 +72,7 @@ delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil]; \
         //是否支持相册功能
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
         {
-            SHOWMESSAGE__(@"提示", @"该设备不支持相册功能");
+            SHOWMESSAGE(@"提示", @"该设备不支持相册功能");
             return;
         }
         
@@ -82,7 +82,7 @@ delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil]; \
         {
             NSString * title = [NSString stringWithFormat:@"%@没有权限访问照片", appName];
             NSString * message = [NSString stringWithFormat:@"请进入系统 设置>隐私>照片 允许\"%@\"访问您的照片",appName];
-            SHOWMESSAGE__(title, message);
+            SHOWMESSAGE(title, message);
             return;
         }
         
